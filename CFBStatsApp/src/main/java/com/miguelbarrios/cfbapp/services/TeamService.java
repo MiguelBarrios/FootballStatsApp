@@ -11,8 +11,10 @@ public interface TeamService {
 
 	Team findTeamById(Integer id);
 
-	List<Player> getTeamRoster(Integer teamId);
+	List<Player> getTeamPlayersByPositionGroup(String teamName, String position);
 
-	List<Player> getTeamPlayersByPositionGroup(Integer teamId, String position);
+	List<Player> getTeamRoster(String teamName);
+
+	Team findTeamByName(String teamName);
 
 }

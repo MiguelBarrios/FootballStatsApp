@@ -25,6 +25,12 @@ public class TeamServiceImpl implements TeamService{
 		return teamRepo.findAll();
 	}
 	
+	@Override 
+	public Team findTeamByName(String teamName) {
+		Team team = teamRepo.findByName(teamName);
+		return team;
+	}
+	
 	@Override
 	public Team findTeamById(Integer id) {
 		Optional<Team> option = teamRepo.findById(id);
@@ -32,13 +38,19 @@ public class TeamServiceImpl implements TeamService{
 	}
 	
 	@Override
-	public List<Player> getTeamRoster(Integer teamId){
-		return playerRepository.getPlayerByTeam(teamId);
+	public List<Player> getTeamRoster(String teamName){
+		List<Player> players = null;
+		Team team = teamRepo.findByName(teamName);
+		if(team != null)
+			players = playerRepository.getPlayerByTeam(team.getId());
+		
+		return players;
 	}
 	
 	@Override
-	public List<Player> getTeamPlayersByPositionGroup(Integer teamId, String position){
-		return playerRepository.getPlayerByTeamAndPositionGroup(teamId, position);
+	public List<Player> getTeamPlayersByPositionGroup(String teamName, String position){
+		Team team = teamRepo.findByName(teamName);
+		return playerRepository.getPlayerByTeamAndPositionGroup(team.getId(), position);
 	}
 	
 	

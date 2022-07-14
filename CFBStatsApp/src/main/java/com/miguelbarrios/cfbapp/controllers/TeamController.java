@@ -28,24 +28,32 @@ public class TeamController {
 		return teamService.index();
 	}
 	
-	@GetMapping("teams/{teamId}")
-	public Team getTeamById(@PathVariable Integer teamId, HttpServletResponse response) {
-		Team team = teamService.findTeamById(teamId);
-		if(team == null) {
+	@GetMapping("teams/{teamName}")
+	public Team getTeamById(@PathVariable String teamName, HttpServletResponse response) {
+		teamName = teamName.replace('-', ' ');
+		Team team = teamService.findTeamByName(teamName);
+		if(team == null)
 			response.setStatus(404);
-		}
 		return team;
 	}
 	
 	
-	@GetMapping("teams/{teamId}/players")
-	public List<Player> getTeamPlayers(@PathVariable Integer teamId){
-		return teamService.getTeamRoster(teamId);
+	@GetMapping("teams/{teamName}/players")
+	public List<Player> getTeamRoster(@PathVariable String teamName, HttpServletResponse response){
+		teamName = teamName.replace('-', ' ');
+		List<Player> roster = teamService.getTeamRoster(teamName);
+		
+		if(roster == null) {
+			response.setStatus(404);
+		}
+		
+		return roster;
 	}
 	
-	@GetMapping("teams/{teamId}/players/{position}")
-	public List<Player> getTeamPlaersByPositionGroup(@PathVariable Integer teamId, @PathVariable String position){
-		return teamService.getTeamPlayersByPositionGroup(teamId, position);
+	@GetMapping("teams/{teamName}/players/{position}")
+	public List<Player> getTeamPlaersByPositionGroup(@PathVariable String teamName, @PathVariable String position){
+		teamName = teamName.replace('-', ' ');
+		return teamService.getTeamPlayersByPositionGroup(teamName, position);
 	}
 	
 }
