@@ -1,0 +1,3 @@
+rootProject.name = 'CFBStatsApp'
+
+includeFlat 'JPAFootballApp'
