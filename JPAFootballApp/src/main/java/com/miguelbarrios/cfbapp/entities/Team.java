@@ -21,6 +21,10 @@ public class Team {
 	
 	private String logo_url;
 	
+	@ManyToOne
+	@JoinColumn(name="conference_name")
+	private Conference conference;
+	
 	
 	public Team() {
 		super();
@@ -57,12 +61,22 @@ public class Team {
 	public void setLogo_url(String logo_url) {
 		this.logo_url = logo_url;
 	}
+	
+	
 
+
+	public Conference getConference() {
+		return conference;
+	}
+
+	public void setConference(Conference conference) {
+		this.conference = conference;
+	}
 
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", team_url=" + team_url + ", logo_url=" + logo_url
-				+ "]";
+				+ ", conference=" + conference + "]";
 	}
    
 }

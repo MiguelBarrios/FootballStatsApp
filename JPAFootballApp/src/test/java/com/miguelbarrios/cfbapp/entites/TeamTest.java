@@ -50,7 +50,13 @@ class TeamTest {
 	void test1() {
 		assertNotNull(team);
 		assertEquals("Oklahoma", team.getName());
-		
 
+	}
+	
+	@Test
+	@DisplayName("MTO mapping to conference test")
+	void mto_mapping_to_conference() {
+		assertNotNull(team);
+		assertEquals("Big-12", team.getConference().getName());
 	}
 }
