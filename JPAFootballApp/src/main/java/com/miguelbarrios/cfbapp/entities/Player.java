@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Entity implementation class for Entity: Player
  *
@@ -31,6 +33,7 @@ public class Player {
 	
 	private int stars;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="team_id")
 	private Team team;
