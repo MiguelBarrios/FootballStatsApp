@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  * Entity implementation class for Entity: Player
@@ -31,6 +31,10 @@ public class Player {
 	
 	private int stars;
 
+	@ManyToOne
+	@JoinColumn(name="team_id")
+	private Team team;
+	
 	public Player() {
 		super();
 	}
@@ -106,11 +110,20 @@ public class Player {
 	}
 
 
+	public Team getTeam() {
+		return team;
+	}
+
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + ", position=" + position + ", height=" + height + ", weight="
-				+ weight + ", year=" + year + ", stars=" + stars + "]";
+				+ weight + ", year=" + year + ", stars=" + stars + ", team=" + team + "]";
 	}
 	
 	
