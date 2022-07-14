@@ -4,6 +4,8 @@
 	
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>com.miguelbarrios.cfbapp.entities.Conference</class>
+		<class>com.miguelbarrios.cfbapp.entities.Player</class>
+		<class>com.miguelbarrios.cfbapp.entities.Team</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url"
