@@ -13,4 +13,6 @@ public interface TeamService {
 
 	List<Player> getTeamRoster(Integer teamId);
 
+	List<Player> getTeamPlayersByPositionGroup(Integer teamId, String position);
+
 }

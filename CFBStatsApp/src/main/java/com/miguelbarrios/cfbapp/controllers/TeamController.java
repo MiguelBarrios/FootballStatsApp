@@ -43,4 +43,9 @@ public class TeamController {
 		return teamService.getTeamRoster(teamId);
 	}
 	
+	@GetMapping("teams/{teamId}/players/{position}")
+	public List<Player> getTeamPlaersByPositionGroup(@PathVariable Integer teamId, @PathVariable String position){
+		return teamService.getTeamPlayersByPositionGroup(teamId, position);
+	}
+	
 }

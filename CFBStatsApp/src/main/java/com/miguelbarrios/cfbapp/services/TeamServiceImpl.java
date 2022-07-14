@@ -36,6 +36,11 @@ public class TeamServiceImpl implements TeamService{
 		return playerRepository.getPlayerByTeam(teamId);
 	}
 	
+	@Override
+	public List<Player> getTeamPlayersByPositionGroup(Integer teamId, String position){
+		return playerRepository.getPlayerByTeamAndPositionGroup(teamId, position);
+	}
+	
 	
 	
 }
