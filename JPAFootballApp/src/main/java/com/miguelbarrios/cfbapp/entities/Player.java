@@ -30,11 +30,6 @@ public class Player {
 	private String year;
 	
 	private int stars;
-	
-	@OneToMany	
-	@JoinColumn(name = "team_id")
-	private Team team;
-	
 
 	public Player() {
 		super();
@@ -111,20 +106,11 @@ public class Player {
 	}
 
 
-	public Team getTeam() {
-		return team;
-	}
-
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-
 
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + ", position=" + position + ", height=" + height + ", weight="
-				+ weight + ", year=" + year + ", stars=" + stars + ", team=" + team + "]";
+				+ weight + ", year=" + year + ", stars=" + stars + "]";
 	}
 	
 	
