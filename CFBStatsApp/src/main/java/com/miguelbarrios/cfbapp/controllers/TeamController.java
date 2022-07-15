@@ -1,6 +1,7 @@
 package com.miguelbarrios.cfbapp.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,5 +56,29 @@ public class TeamController {
 		teamName = teamName.replace('-', ' ');
 		return teamService.getTeamPlayersByPositionGroup(teamName, position);
 	}
+	
+	@GetMapping("teams/compare/{team1}/{team2}")
+	public Map<String, List<Player>> compareTeams(@PathVariable String team1, @PathVariable String team2, HttpServletResponse response){
+		team1 = team1.replace('-', ' ');
+		team2 = team2.replace('-', ' ');		
+		Map<String, List<Player>> map = teamService.compareTeams(team1, team2);
+		if(map == null) {
+			response.setStatus(404);
+		}
+		return map;
+	}
+	
+	
+	@GetMapping("teams/compare/{team1}/{team2}/{position}")
+	public Map<String, List<Player>> compareTeamsByPosition(@PathVariable String team1, @PathVariable String team2, @PathVariable String position, HttpServletResponse response){
+		team1 = team1.replace('-', ' ');
+		team2 = team2.replace('-',' ');
+		Map<String, List<Player>> map = teamService.compareTeamsByPosition(team1, team2, position);
+		if(map == null) {
+			response.setStatus(404);
+		}
+		return map;
+	}
+	
 	
 }

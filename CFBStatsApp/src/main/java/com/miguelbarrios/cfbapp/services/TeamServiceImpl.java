@@ -1,6 +1,8 @@
 package com.miguelbarrios.cfbapp.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.miguelbarrios.cfbapp.entities.Player;
@@ -53,6 +55,32 @@ public class TeamServiceImpl implements TeamService{
 		return playerRepository.getPlayerByTeamAndPositionGroup(team.getId(), position);
 	}
 	
+	@Override
+	public Map<String, List<Player>> compareTeams(String teamA, String teamB){
+		List<Player> rosterA = getTeamRoster(teamA);
+		List<Player> rosterB = getTeamRoster(teamB);
+		if(rosterA == null || rosterB == null) {
+			return null;
+		}
+		
+		Map<String,List<Player>> map = new HashMap<>();
+		map.put(teamA, rosterA);
+		map.put(teamB, rosterB);
+		return map;
+	}
 	
+	@Override
+	public Map<String, List<Player>> compareTeamsByPosition(String teamA, String teamB, String position){
+		List<Player> rosterA = getTeamPlayersByPositionGroup(teamA, position);
+		List<Player> rosterB = getTeamPlayersByPositionGroup(teamB, position);
+		if(rosterA == null || rosterB == null) {
+			return null;
+		}
+		
+		Map<String, List<Player>> map =  new HashMap<>();
+		map.put(teamA, rosterA);
+		map.put(teamB, rosterB);
+		return map;
+	}
 	
 }
